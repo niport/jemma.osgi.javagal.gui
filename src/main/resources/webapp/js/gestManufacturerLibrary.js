@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+
+var DEFINEMANUFACTURER = {
+	FREESCALE: "0050",
+	FOURNOKS: "000D",
+	FLEXGRID: "30DE"
+}
