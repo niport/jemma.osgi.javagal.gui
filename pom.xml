@@ -89,6 +89,13 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>JemmaRepository</id>
+			<name>JEMMA Maven repository</name>
+			<url>http://ismb.github.io/jemma-maven-repository/maven</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.osgi</groupId>
