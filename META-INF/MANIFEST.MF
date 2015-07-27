@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1436433635777
-Build-Jdk: 1.8.0_31
-Built-By: 11621035
+Bnd-LastModified: 1438023418338
+Build-Jdk: 1.7.0_45
+Built-By: bluewind
 Bundle-ManifestVersion: 2
 Bundle-Name: Java Gal Gui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-SymbolicName: org.energy-home.jemma.osgi.javagal.gui
 Bundle-Vendor: Telecom Italia
-Bundle-Version: 1.0.5
+Bundle-Version: 1.0.6
 Created-By: Apache Maven Bundle Plugin
 Import-Package: javax.servlet;version="[2.5,3)",javax.servlet.http;versi
  on="[2.5,3)",org.osgi.service.useradmin;version="[1.1,2)",javax.securit

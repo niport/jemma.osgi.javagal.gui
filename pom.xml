@@ -25,14 +25,25 @@
 	<groupId>org.energy-home</groupId>
 	<artifactId>jemma.osgi.javagal.gui</artifactId>
 	<packaging>bundle</packaging>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<name>Java Gal Gui</name>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Internal dependencies version properties -->
+		
+		<org.energy-home.jemma.osgi.javagal.version>2.0.9</org.energy-home.jemma.osgi.javagal.version>
+		
+		<!-- External dependencies version properties -->
+		<javax.servlet2.version>2.5.0</javax.servlet2.version>
+		<org.osgi.compendium.version>4.2.0</org.osgi.compendium.version>
+		<org.osgi.core.version>4.2.0</org.osgi.core.version>	
 		<org.slf4j.version>1.6.2</org.slf4j.version>
-		<org.energy-home.jemma.osgi.javagal.version>2.0.6</org.energy-home.jemma.osgi.javagal.version>
+		
+		<!-- Maven plugin version properties -->
 		<felix.bundle.plugin.version>2.5.3</felix.bundle.plugin.version>
-		<javax.servlet.version>2.5.0</javax.servlet.version>
+		
 	</properties>
 	<build>
 		<resources>
@@ -97,6 +108,23 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		
+		<!-- Internal dependencies  -->
+		
+		<dependency>
+			<groupId>org.energy-home</groupId>
+			<artifactId>jemma.osgi.javagal</artifactId>
+			<version>${org.energy-home.jemma.osgi.javagal.version}</version>
+		</dependency>
+		
+		<!-- External dependencies -->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet</artifactId>
+			<version>${javax.servlet2.version}</version>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.core</artifactId>
@@ -109,24 +137,13 @@
 			<version>4.2.0</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.energy-home</groupId>
-			<artifactId>jemma.osgi.javagal</artifactId>
-			<version>${org.energy-home.jemma.osgi.javagal.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j.version}</version>
 			<scope>compile</scope>
 		</dependency> 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet</artifactId>
-			<version>${javax.servlet.version}</version>
-			<scope>compile</scope>
-		</dependency>
+
 	</dependencies>
 </project>
 
