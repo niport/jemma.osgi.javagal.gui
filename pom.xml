@@ -25,7 +25,7 @@
 	<groupId>org.energy-home</groupId>
 	<artifactId>jemma.osgi.javagal.gui</artifactId>
 	<packaging>bundle</packaging>
-	<version>1.0.6</version>
+	<version>1.0.7</version>
 	<name>Java Gal Gui</name>
 
 	<properties>
@@ -76,6 +76,7 @@
 					<instructions>
 						<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
 						<Bundle-Name>${project.name}</Bundle-Name>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Version>${project.version}</Bundle-Version>
 						<Bundle-Vendor>Telecom Italia</Bundle-Vendor>
 						<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
@@ -94,10 +95,19 @@
 						<Export-Package>!*
 						</Export-Package>
 						<Service-Component>OSGI-INF/*.xml</Service-Component>
-
+						<Bundle-Category>JEMMA JavaGAL, GUI</Bundle-Category>
 					</instructions>
 				</configuration>
 			</plugin>
+			<!-- to launch: mvn java-formatter:format -->
+			<plugin>
+				<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+				<artifactId>maven-java-formatter-plugin</artifactId>
+				<version>0.4</version>
+				<configuration>
+					<configFile>${project.basedir}/src/main/resources/formatter.xml</configFile>
+				</configuration>
+			</plugin>			
 		</plugins>
 	</build>
 	<repositories>
