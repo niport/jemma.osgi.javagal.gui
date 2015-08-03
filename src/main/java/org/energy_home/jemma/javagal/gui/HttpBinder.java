@@ -29,7 +29,6 @@ public class HttpBinder implements EventHandler, HttpServletBinder {
 
 	private static final Logger LOG = LoggerFactory.getLogger(HttpBinder.class);
 
-	
 	private HttpImplementor implementor = null;
 
 	public HttpBinder() {

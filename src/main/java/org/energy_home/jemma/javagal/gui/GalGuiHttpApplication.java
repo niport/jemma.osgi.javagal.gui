@@ -137,14 +137,11 @@ public class GalGuiHttpApplication extends DefaultWebApplication implements Http
 			return "application/javascript";
 		} else if (page.endsWith(".html")) {
 			return "text/html";
-		}
-		else if (page.endsWith(".ico")) {
+		} else if (page.endsWith(".ico")) {
 			return "image/x-icon";
-		}
-		else if (page.endsWith(".png")) {
+		} else if (page.endsWith(".png")) {
 			return "image/png";
-		}
-		else 
+		} else
 			return null;
 	}
 
@@ -154,7 +151,7 @@ public class GalGuiHttpApplication extends DefaultWebApplication implements Http
 			// the resource name ends with slash, defaults to index.html
 			name += "home.html";
 		}
-		
+
 		if (name.equals("webapp/"))
 			u = this.bc.getBundle().getResource(name + "home.html");
 		else
@@ -168,7 +165,6 @@ public class GalGuiHttpApplication extends DefaultWebApplication implements Http
 			return true;
 		else
 			LOG.debug("Http Request:" + request.getRequestURI());
-		
 
 		if (enableHttps && !request.getScheme().equals("https")) {
 			try {
@@ -215,22 +211,20 @@ public class GalGuiHttpApplication extends DefaultWebApplication implements Http
 				if (queryString.toLowerCase().startsWith(applicationWebAlias.toLowerCase())) {
 					// this is a restricted area so performs login
 
-					
-					if (request.getMethod() == "POST" && session.getValue("javaGallogon.isDone")==null) {
+					if (request.getMethod() == "POST" && session.getValue("javaGallogon.isDone") == null) {
 						String username64 = request.getParameter("username");
 						String password64 = request.getParameter("password");
-						
-						String username=null;
-						String password=null;
-						try{
+
+						String username = null;
+						String password = null;
+						try {
 							username = new String(Base64.decode(username64.getBytes()));
 							password = new String(Base64.decode(password64.getBytes()));
-						}catch(Exception e)
-						{
+						} catch (Exception e) {
 							LOG.error("Error decoding user/password");
 							return false;
 						}
-								
+
 						if (!allowUser(username, password)) {
 							return redirectToLoginPage(request, response);
 						} else {
@@ -268,8 +262,6 @@ public class GalGuiHttpApplication extends DefaultWebApplication implements Http
 			}
 		}
 
-		
-
 		return true;
 	}
 
@@ -289,10 +281,9 @@ public class GalGuiHttpApplication extends DefaultWebApplication implements Http
 		Object currentCredential = user.getProperties().get("org.energy_home.jemma.username");
 		if (currentCredential == null) {
 			user.getProperties().put("org.energy_home.jemma.username", user.getName().toLowerCase());
-			try{
+			try {
 				user.getCredentials().put("org.energy_home.jemma.password", password);
-			}catch(Exception e)
-			{
+			} catch (Exception e) {
 				LOG.error("Error setting password");
 			}
 
@@ -315,8 +306,7 @@ public class GalGuiHttpApplication extends DefaultWebApplication implements Http
 				if (group == null) {
 					return false;
 				} else {
-					for (Role x : group.getMembers())
-					{
+					for (Role x : group.getMembers()) {
 						if (x.getName().equalsIgnoreCase(username))
 							return true;
 					}
