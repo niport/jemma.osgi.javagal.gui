@@ -33,7 +33,7 @@
 
 		<!-- Internal dependencies version properties -->
 		
-		<org.energy-home.jemma.osgi.javagal.version>2.0.9</org.energy-home.jemma.osgi.javagal.version>
+		<org.energy-home.jemma.osgi.javagal.version>2.0.10</org.energy-home.jemma.osgi.javagal.version>
 		
 		<!-- External dependencies version properties -->
 		<javax.servlet2.version>2.5.0</javax.servlet2.version>
