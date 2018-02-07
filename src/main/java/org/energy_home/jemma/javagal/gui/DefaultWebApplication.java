@@ -15,22 +15,52 @@
  */
 package org.energy_home.jemma.javagal.gui;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Servlet;
 
-import org.energy_home.jemma.zgd.GatewayInterface;
 import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DefaultWebApplication {
+
+	private static final Logger LOG = LoggerFactory.getLogger(DefaultWebApplication.class);
+
 	private String rootUrl = "";
+
 	private HttpService httpService = null;
 
-	Vector resources = new Vector();
-	Vector servlets = new Vector();
+	List<Resource> resources = new ArrayList<Resource>();
+	List<ServletResource> servlets = new ArrayList<ServletResource>();
 
 	private HttpContext httpContext;
+
+	public synchronized void bindHttpService(HttpService s) {
+		synchronized (this) {
+			this.httpService = s;
+			this.registerResources();
+		}
+	}
+
+	protected void unbindHttpService(HttpService s) {
+		synchronized (this) {
+			if (this.httpService == s) {
+				this.unregisterResources();
+				this.httpService = null;
+			}
+		}
+	}
+
+	public void addResource(String alias, String path) {
+		this.resources.add(new Resource(alias, path));
+	}
+
+	public void addServlet(String alias, Servlet servlet) {
+		this.servlets.add(new ServletResource(alias, servlet));
+	}
 
 	public void setRootUrl(String rootUrl) {
 		this.rootUrl = rootUrl;
@@ -40,28 +70,7 @@ public class DefaultWebApplication {
 		return rootUrl;
 	}
 
-	public void registerResource(String alias, String path) {
-		this.resources.add(new Resource(alias, path));
-	}
-
-	public void registerResource(String alias, Servlet servlet) {
-		this.servlets.add(new ServletResource(alias, servlet));
-	}
-
-	public synchronized void bindHttpService(HttpService s) {
-		this.httpService = s;
-		this.bindResources();
-
-	}
-
-	protected synchronized void unbindHttpService(HttpService s) {
-		if (this.httpService == s) {
-			this.unbindResources();
-			this.httpService = null;
-		}
-	}
-
-	private void bindResources() {
+	protected void registerResources() {
 		if (httpService != null) {
 
 			for (int i = 0; i < resources.size(); i++) {
@@ -69,7 +78,7 @@ public class DefaultWebApplication {
 				try {
 					httpService.registerResources(this.toAlias(this.rootUrl + r.getAlias()), r.getPath(), this.getHttpContext());
 				} catch (Throwable e) {
-					e.printStackTrace();
+					LOG.error("Exception", e);
 					continue;
 				}
 			}
@@ -79,7 +88,30 @@ public class DefaultWebApplication {
 				try {
 					httpService.registerServlet(this.toAlias(this.rootUrl + sr.getAlias()), sr.getServlet(), null, this.getHttpContext());
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOG.error("Exception", e);
+					continue;
+				}
+			}
+		}
+	}
+
+	protected void unregisterResources() {
+		if (this.httpService != null) {
+			for (int i = 0; i < resources.size(); i++) {
+				Resource r = (Resource) resources.get(i);
+				try {
+					httpService.unregister(this.rootUrl + r.getAlias());
+				} catch (Exception e) {
+					LOG.error("Exception", e);
+					continue;
+				}
+			}
+			for (int i = 0; i < servlets.size(); i++) {
+				ServletResource sr = (ServletResource) servlets.get(i);
+				try {
+					httpService.unregister(this.rootUrl + sr.getAlias());
+				} catch (Exception e) {
+					LOG.error("Exception", e);
 					continue;
 				}
 			}
@@ -95,27 +127,6 @@ public class DefaultWebApplication {
 		return alias;
 	}
 
-	private void unbindResources() {
-		if (this.httpService != null) {
-			for (int i = 0; i < resources.size(); i++) {
-				Resource r = (Resource) resources.get(i);
-				try {
-					httpService.unregister(this.rootUrl + r.getAlias());
-				} catch (Exception e) {
-					continue;
-				}
-			}
-			for (int i = 0; i < servlets.size(); i++) {
-				ServletResource sr = (ServletResource) servlets.get(i);
-				try {
-					httpService.unregister(this.rootUrl + sr.getAlias());
-				} catch (Exception e) {
-					continue;
-				}
-			}
-		}
-	}
-
 	private HttpContext getHttpContext() {
 		if (httpContext != null) {
 			return httpContext;
@@ -127,6 +138,5 @@ public class DefaultWebApplication {
 
 	public void setHttpContext(HttpContext httpContext) {
 		this.httpContext = httpContext;
-
 	}
 }
