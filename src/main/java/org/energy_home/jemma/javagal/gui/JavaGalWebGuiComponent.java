@@ -41,7 +41,8 @@ import org.slf4j.LoggerFactory;
  * 
  * FIXME: login form authentication do not work anymore.
  * 
- * TODO: use an approach similar to the Http Whiteboard specification, and split this code from the actual web pages.
+ * TODO: use an approach similar to the Http Whiteboard specification, and split
+ * this code from the actual web pages resources.
  *
  */
 
@@ -199,7 +200,7 @@ public class JavaGalWebGuiComponent extends DefaultWebApplication implements Htt
 				if (queryString.startsWith(applicationWebAlias)) {
 					// this is a restricted area so performs login
 
-					if (request.getMethod() == "POST" && session.getValue("javaGallogon.isDone") == null) {
+					if (request.getMethod() == "POST" && session.getAttribute("javaGallogon.isDone") == null) {
 						String username64 = request.getParameter("username");
 						String password64 = request.getParameter("password");
 
@@ -216,9 +217,9 @@ public class JavaGalWebGuiComponent extends DefaultWebApplication implements Htt
 						if (!allowUser(username, password)) {
 							return redirectToLoginPage(request, response);
 						} else {
-							session.putValue("javaGallogon.isDone", username);
+							session.setAttribute("javaGallogon.isDone", username);
 							try {
-								String target = (String) session.getValue("javaGalLogin.target");
+								String target = (String) session.getAttribute("javaGalLogin.target");
 								if (target != null) {
 
 									response.sendRedirect(target);
@@ -233,8 +234,8 @@ public class JavaGalWebGuiComponent extends DefaultWebApplication implements Htt
 						if (queryString.equals(applicationWebAlias + "/login.html")) {
 							return true;
 						} else {
-							session.putValue("javaGalLogin.target", applicationWebAlias + "/" + ENTRY_HTML_PAGE);
-							Object done = session.getValue("javaGallogon.isDone");
+							session.setAttribute("javaGalLogin.target", applicationWebAlias + "/" + ENTRY_HTML_PAGE);
+							Object done = session.getAttribute("javaGallogon.isDone");
 							if (done == null) {
 								if (request.getMethod().equals("GET")) {
 									return redirectToLoginPage(request, response);
