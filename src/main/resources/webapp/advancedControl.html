@@ -111,13 +111,12 @@
 									null);
 							myNMMenu.newButton('stopResetPhilipsHue', null,
 									null);
-							var timeout = '00002710';
 							$
 									.ajax(
 											{
 												url : DEFINEPATH.infoForRestartGal
 														+ "timeout="
-														+ timeout
+														+ defaultTimeout
 														+ "&index=00"
 											})
 									.done(
@@ -222,29 +221,30 @@
 								switch (buttonInHeaderPressed) {
 								case 'btnStartGal':
 									type = 'POST';
-									timeout = '00002710';
 									url = DEFINEPATH.startGalPath + "timeout="
-											+ timeout + "&start=true";
+											+ defaultTimeout + "&start=true";
 									errorMsg = 'Error in start mode: ';
 									break;
+									
 								case 'btnRestartGal1':
 									type = 'GET';
 									startMode = '00';
-									timeout = '00002710';
 									url = DEFINEPATH.reStartGalPath
-											+ "timeout=" + timeout
+											+ "timeout=" + defaultTimeout
 											+ "&startMode=" + startMode;
 									errorMsg = 'Error in restart in Association mode: ';
 									break;
+									
 								case 'btnRestartGal2':
 									type = 'GET';
 									startMode = '01';
-									timeout = '00002710';
+									
 									url = DEFINEPATH.reStartGalPath
-											+ "timeout=" + timeout
+											+ "timeout=" + defaultTimeout
 											+ "&startMode=" + startMode;
 									errorMsg = 'Error in restart in NVM mode: ';
 									break;
+									
 								case 'btnRecoveryGal':
 									console.debug("Recovery gal button")
 									type = 'GET';

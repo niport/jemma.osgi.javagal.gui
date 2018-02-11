@@ -3,7 +3,7 @@ var loadEventsOnFields = false;
 var checkChangingFields = false;
 var buttonsToEnable = new Array();
 
-
+var defaultTimeout = 0x2710;
 
 function reloadGridFromUrl(url, idGrid) {
 	jQuery(idGrid).jqGrid('setGridParam', {url: url});

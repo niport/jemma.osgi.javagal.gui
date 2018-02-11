@@ -14,7 +14,7 @@
 									.ajax(
 											{
 												url : DEFINEPATH.simpleDescriptorPath
-														+ "?timeout=00002710&addr="
+														+ "?timeout=" + defaultTimeout + "&addr="
 														+ short_address
 														+ "&endpoint="
 														+ endpoint
@@ -199,7 +199,7 @@
 							.ajax(
 									{
 										url : DEFINEPATH.detailDevicePath
-												+ "?timeout=00002710&addr="
+												+ "?timeout=" + defaultTimeout + "&addr="
 												+ shortAddress,
 										type : 'GET'
 									})

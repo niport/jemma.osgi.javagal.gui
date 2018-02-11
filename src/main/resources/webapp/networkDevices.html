@@ -43,7 +43,7 @@
 							$.ajax(
 									{
 										url : DEFINEPATH.leavePath
-												+ "?timeout=00002710&addr="
+												+ "?timeout=" + defaultTimeout + "&addr="
 												+ shortAddress,
 										type : 'DELETE'
 									}).done(
@@ -65,7 +65,7 @@
 					.ajax(
 							{
 								url : DEFINEPATH.detailDevicePath
-										+ "?timeout=00002710&addr="
+										+ "?timeout=" + defaultTimeout + "&addr="
 										+ shortAddress,
 								type : 'GET'
 							})
@@ -484,7 +484,7 @@
 						tcSignificance : true
 					};
 					$.ajax({
-						url : DEFINEPATH.permitJoinPath + "?timeout=00002710",
+						url : DEFINEPATH.permitJoinPath + "?timeout=" + defaultTimeout + "",
 						type : 'POST',
 						data : JSON.stringify(JoiningInfo),
 						contentType : "application/json; charset=utf-8"
@@ -511,7 +511,7 @@
 				'tcSignificance' : true
 			};
 			$.ajax({
-				url : DEFINEPATH.permitJoinPath + "?timeout=00002710",
+				url : DEFINEPATH.permitJoinPath + "?timeout=" + defaultTimeout,
 				type : 'POST',
 				data : JSON.stringify(JoiningInfo),
 				contentType : "application/json; charset=utf-8"
@@ -541,7 +541,7 @@
 									.ajax(
 											{
 												url : DEFINEPATH.simpleDescriptorPath
-														+ "?timeout=00002710&addr="
+														+ "?timeout=" + defaultTimeout + "&addr="
 														+ short_address
 														+ "&endpoint="
 														+ endpoint
