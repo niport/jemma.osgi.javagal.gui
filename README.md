@@ -13,12 +13,23 @@ In this case the web application will be available at the address http://address
 
 ## Setting administrative user/pass for java GAL administrative GUI
 
-In order to get a local login/pass for the javaGAL GUI, you should add properties, e.g. in your launch configuration, as in the following example:
+If the UserAdmin service is active, then it is used for user authentication. 
+To be allowed to login, the user must also belong to the "Administrators" group.
+
+On the other hand if the UserAdmin service is not present, the bundle authenticates 
+the user using satisfying the credentials defined by the following two system properties 
+that have to be defined in the Eclipse launch configuration as follows:
 
 ``````
--Dorg.energy_home.jemma.username=javagaladmin
--Dorg.energy_home.jemma.password=javagaladmin
+-Dorg.energy_home.jemma.username=<username>
+-Dorg.energy_home.jemma.password=<password>
 ``````
+
+If the UserAdmin service is used, it is up to the developer to configure on 
+it the allowed accounts accordingly.
+
+
+
 
 
 
