@@ -38,12 +38,6 @@ import org.slf4j.LoggerFactory;
 /**
  * This class is the main Java GAL UI SCR component. It implements also the
  * HttpContext interface for user authentication.
- * 
- * FIXME: login form authentication do not work anymore.
- * 
- * TODO: use an approach similar to the Http Whiteboard specification, and split
- * this code from the actual web pages resources.
- *
  */
 
 public class JavaGalWebGuiComponent extends DefaultWebApplication implements HttpContext {

@@ -7,7 +7,6 @@
   <classpathentry kind="var" path="M2_REPO/javax/servlet/javax.servlet/2.5.0/javax.servlet-2.5.0.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-  <classpathentry kind="var" path="M2_REPO/org/energy-home/jemma.osgi.javagal/2.0.10/jemma.osgi.javagal-2.0.10.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/osgi/org.osgi.core/4.2.0/org.osgi.core-4.2.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.6.2/slf4j-api-1.6.2.jar"/>
